@@ -4,7 +4,7 @@ import time
 
 def mergeJsonMapping():
     # Define the order of JSON files to merge
-    mappingOrders = ["class_mappings.json", "field_mappings.json", "method_mappings.json"]
+    mappingOrders = ["mappings/processed/class_mappings.json", "mappings/processed/field_mappings.json", "mappings/processed/method_mappings.json"]
 
     # Initialize an empty dictionary to hold the merged data
     mergedData = []
@@ -19,7 +19,7 @@ def mergeJsonMapping():
             mergedData.append(content)
 
     # Write the merged content to a new JSON file
-    with open('mappings.json', 'w') as merged_file:
+    with open('mappings/processed/mappings.json', 'w') as merged_file:
         json.dump(mergedData, merged_file, indent=4)
 
 

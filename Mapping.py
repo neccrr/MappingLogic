@@ -8,7 +8,7 @@ methodMappingCounts = 0
 
 
 # Read the raw field mapping files
-with open('./mappings/1.8.9_mappings.txt', 'r') as file:
+with open('mappings/raw/1.8.9_mappings.txt', 'r') as file:
     rawClassMappings = file.readlines()
 
 
@@ -58,14 +58,14 @@ def classMapping(saveToJson: bool):
 
     if saveToJson:
         # Save the JSON data to a file
-        with open('class_mappings.json', 'w') as processedMapping:
+        with open('mappings/processed/class_mappings.json', 'w') as processedMapping:
             processedMapping.write(json_data)
 
     print(f"Mapped {classMappingCounts} class")
 
 
 # Read the raw field mapping files
-with open('./mappings/1.8.9_mappings.txt', 'r') as file:
+with open('mappings/raw/1.8.9_mappings.txt', 'r') as file:
     rawFieldMappings = file.readlines()
 
 # ex mappings.txt content (mappings/1.8.9_mappings.txt)
@@ -136,7 +136,7 @@ def fieldMapping(saveToJson: bool):
 
     if saveToJson:
         # Save the JSON data to a file
-        with open('field_mappings.json', 'w') as processedMapping:
+        with open('mappings/processed/field_mappings.json', 'w') as processedMapping:
             processedMapping.write(json_data)
 
     print(f"Mapped {fieldMappingCounts} fields")
@@ -147,7 +147,7 @@ methodRef = "MD: pk/F ()I net/minecraft/entity/Entity/getEntityId ()I"
 
 
 # Read the raw method mapping files
-with open('./mappings/1.8.9_mappings.txt', 'r') as file:
+with open('mappings/raw/1.8.9_mappings.txt', 'r') as file:
     rawMethodMappings = file.readlines()
 
 
@@ -215,7 +215,7 @@ def methodMapping(saveToJson: bool):
 
     if saveToJson:
         # Save the JSON data to a file
-        with open('method_mappings.json', 'w') as processedMapping:
+        with open('mappings/processed/method_mappings.json', 'w') as processedMapping:
             processedMapping.write(json_data)
 
     print(f"Mapped {fieldMappingCounts} methods")
