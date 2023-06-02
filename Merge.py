@@ -4,7 +4,8 @@ import time
 
 def mergeJsonMapping():
     # Define the order of JSON files to merge
-    mappingOrders = ["mappings/processed/class_mappings.json", "mappings/processed/field_mappings.json", "mappings/processed/method_mappings.json"]
+    mappingOrders = ["mappings/processed/class_mappings.json", "mappings/processed/field_mappings.json",
+                     "mappings/processed/method_mappings.json"]
 
     # Initialize an empty dictionary to hold the merged data
     mergedData = []
@@ -40,4 +41,16 @@ if __name__ == '__main__':
 
     # Calculate the elapsed time
     elapsedTime = endTime - startTime
+
+    # Format the elapsed time
+    hours, a = divmod(elapsedTime, 3600)
+    minutes, seconds = divmod(a, 60)
+    formattedTime = ""
+    if hours > 0:
+        formattedTime += f"{int(hours)} hours "
+    if minutes > 0:
+        formattedTime += f"{int(minutes)} minutes "
+    formattedTime += f"{seconds:.2f} seconds"
+
     print(f"Elapsed time: {elapsedTime} seconds ({elapsedTime * 1000} ms)")
+    print(f"{formattedTime}")

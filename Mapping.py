@@ -107,6 +107,10 @@ def fieldMapping(saveToJson: bool):
             # Mapped (original) full path name | ex: net.minecraft.client.Minecraft.thePlayer (ave/h)
             fieldMappingElements_3 = fieldMappingElements[3]
             # Splits the second sentence by "/"
+            # Get the very last part of it
+            mappedFieldName = fieldMappingElements_3.split("/")[-1]
+            # Get the rest of the part except the very last one
+            mappedOwnerName = "/".join(fieldMappingElements_3.split("/")[:-1])
             # Sets the results to variables to be used later
             mappedFullPathName = fieldMappingElements_3
 
@@ -124,6 +128,8 @@ def fieldMapping(saveToJson: bool):
                 "obfuscatedOwnerName": obfuscatedOwnerName,
                 "obfuscatedFullPathName": obfuscatedFullPathName,
                 "obfuscatedObjectType": obfuscatedObjectType,
+                "mappedFieldName": mappedFieldName,
+                "mappedOwnerName": mappedOwnerName,
                 "mappedFullPathName": mappedFullPathName,
                 "mappedObjectType": mappedObjectType
             }
@@ -186,6 +192,10 @@ def methodMapping(saveToJson: bool):
             # Mapped (original) full path name | ex: net.minecraft.client.Minecraft.thePlayer (ave/h)
             fieldMappingElements_3 = fieldMappingElements[3]
             # Splits the second sentence by "/"
+            # Get the very last part of it
+            mappedMethodName = fieldMappingElements_3.split("/")[-1]
+            # Get the rest of the part except the very last one
+            mappedOwnerName = "/".join(fieldMappingElements_3.split("/")[:-1])
             # Sets the results to variables to be used later
             mappedFullPathName = fieldMappingElements_3
 
@@ -203,6 +213,8 @@ def methodMapping(saveToJson: bool):
                 "obfuscatedOwnerName": obfuscatedOwnerName,
                 "obfuscatedFullPathName": obfuscatedFullPathName,
                 "obfuscatedObjectType": obfuscatedObjectType,
+                "mappedMethodName": mappedMethodName,
+                "mappedOwnerName": mappedOwnerName,
                 "mappedFullPathName": mappedFullPathName,
                 "mappedObjectType": mappedObjectType
             }
@@ -245,4 +257,16 @@ if __name__ == '__main__':
 
     # Calculate the elapsed time
     elapsedTime = endTime - startTime
+
+    # Format the elapsed time
+    hours, a = divmod(elapsedTime, 3600)
+    minutes, seconds = divmod(a, 60)
+    formattedTime = ""
+    if hours > 0:
+        formattedTime += f"{int(hours)} hours "
+    if minutes > 0:
+        formattedTime += f"{int(minutes)} minutes "
+    formattedTime += f"{seconds:.2f} seconds"
+
     print(f"Elapsed time: {elapsedTime} seconds ({elapsedTime * 1000} ms)")
+    print(f"{formattedTime}")
