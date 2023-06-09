@@ -1,23 +1,21 @@
 import json
 import time
 
-
+# global variables
 classMappingCounts = 0
 fieldMappingCounts = 0
 methodMappingCounts = 0
 
 
-# Read the raw field mapping files
-with open('mappings/raw/1.8.9_mappings.txt', 'r') as file:
-    rawClassMappings = file.readlines()
-
-
-# ex mappings.txt content (mappings/1.8.9_mappings.txt)
-classRef = "CL: ave net/minecraft/client/Minecraft"
-
-
-# Map the field (FD:)
+# mappings.txt content (mappings/1.8.9_mappings.txt)
+# "CL: ave net/minecraft/client/Minecraft"
+#
+# Map the classes
 def classMapping(saveToJson: bool):
+    # Read the raw field mapping files
+    with open('mappings/raw/1.8.9_mappings.txt', 'r') as rawClassMappingFile:
+        rawClassMappings = rawClassMappingFile.readlines()
+
     global classMappingCounts  # Declare global variable
 
     classMappingsJson = []
@@ -64,16 +62,15 @@ def classMapping(saveToJson: bool):
     print(f"Mapped {classMappingCounts} class")
 
 
-# Read the raw field mapping files
-with open('mappings/raw/1.8.9_mappings.txt', 'r') as file:
-    rawFieldMappings = file.readlines()
-
-# ex mappings.txt content (mappings/1.8.9_mappings.txt)
-fieldRef = "FD: ave/h Lbew; net/minecraft/client/Minecraft/thePlayer Lnet/minecraft/client/entity/EntityPlayerSP;"
-
-
-# Map the field (FD:)
+# mappings.txt content (mappings/1.8.9_mappings.txt)
+# "FD: ave/h Lbew; net/minecraft/client/Minecraft/thePlayer Lnet/minecraft/client/entity/EntityPlayerSP;"
+#
+# Map the field
 def fieldMapping(saveToJson: bool):
+    # Read the raw field mapping files
+    with open('mappings/raw/1.8.9_mappings.txt', 'r') as rawFieldMappingFile:
+        rawFieldMappings = rawFieldMappingFile.readlines()
+
     global fieldMappingCounts  # Declare global variable
 
     fieldMappingsJson = []
@@ -148,17 +145,15 @@ def fieldMapping(saveToJson: bool):
     print(f"Mapped {fieldMappingCounts} fields")
 
 
-# ex mappings.txt content (mappings/1.8.9_mappings.txt)
-methodRef = "MD: pk/F ()I net/minecraft/entity/Entity/getEntityId ()I"
-
-
-# Read the raw method mapping files
-with open('mappings/raw/1.8.9_mappings.txt', 'r') as file:
-    rawMethodMappings = file.readlines()
-
-
-# Map the field (FD:)
+# mappings.txt content (mappings/1.8.9_mappings.txt)
+# "MD: pk/F ()I net/minecraft/entity/Entity/getEntityId ()I"
+#
+# Map the method
 def methodMapping(saveToJson: bool):
+    # Read the raw method mapping files
+    with open('mappings/raw/1.8.9_mappings.txt', 'r') as rawMethodMappingFile:
+        rawMethodMappings = rawMethodMappingFile.readlines()
+
     global methodMappingCounts  # Declare global variable
 
     methodMappingsJson = []
