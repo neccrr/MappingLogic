@@ -27,29 +27,25 @@ def classMapping(saveToJson: bool):
             classMappingCounts += 1
 
             # splits the mapping elements into multiple sentences based on the space
-            fieldMappingElements = mappingLines.split()
+            classMappingElements = mappingLines.split()
 
             # Obfuscated class name | ex: ave (net.minecraft.client.Minecraft)
-            fieldMappingElements_1 = fieldMappingElements[1]
-            # Sets the results to variables to be used later
-            obfuscatedClassName = fieldMappingElements_1
+            obfuscatedClassName = classMappingElements[1]
 
             # Mapped (original) class name | ex: net.minecraft.client.Minecraft (ave)
-            fieldMappingElements_2 = fieldMappingElements[2]
-            # Sets the results to variables to be used later
-            mappedClassName = fieldMappingElements_2
+            mappedClassName = classMappingElements[2]
 
             # print the results
             print(f"[CL:] Mapping class {obfuscatedClassName} to {mappedClassName}")
 
             # Create a dictionary for the field mapping
-            fieldMappingJson = {
+            classMappingData = {
                 "obfuscatedClassName": obfuscatedClassName,
                 "mappedClassName": mappedClassName
             }
 
             # Add the field mapping to the list
-            classMappingsJson.append(fieldMappingJson)
+            classMappingsJson.append(classMappingData)
 
     # Convert the list of field mappings to JSON
     json_data = json.dumps(classMappingsJson, indent=4)
@@ -85,54 +81,44 @@ def fieldMapping(saveToJson: bool):
             fieldMappingElements = mappingLines.split()
 
             # Obfuscated field name | ex: h (thePlayer)
+            obfuscatedFieldName = fieldMappingElements[1].split("/")[1]
             # Obfuscated owner name | ex: ave (net.minecraft.client.Minecraft)
+            obfuscatedFieldOwnerName = fieldMappingElements[1].split("/")[0]
             # Obfuscated full path name | ex: ave/h (net.minecraft.client.Minecraft.thePlayer)
-            fieldMappingElements_1 = fieldMappingElements[1]
-            # Splits the second sentence by "/"
-            # Sets the results to variables to be used later
-            obfuscatedOwnerName = fieldMappingElements_1.split("/")[0]
-            obfuscatedFieldName = fieldMappingElements_1.split("/")[1]
-            obfuscatedFullPathName = fieldMappingElements_1
+            obfuscatedFieldFullPathName = fieldMappingElements[1]
 
             # Obfuscated object type | ex: Lwn; (Lnet/minecraft/entity/player/EntityPlayer;)
-            fieldMappingElements_2 = fieldMappingElements[2]
-            # Sets the results to variables to be used later
-            obfuscatedObjectType = fieldMappingElements_2
+            obfuscatedFieldObjectType = fieldMappingElements[2]
 
             # Mapped (original) field name | ex: thePlayer (h)
-            # Mapped (original) owner name | ex: net.minecraft.client.Minecraft (ave)
-            # Mapped (original) full path name | ex: net.minecraft.client.Minecraft.thePlayer (ave/h)
-            fieldMappingElements_3 = fieldMappingElements[3]
-            # Splits the second sentence by "/"
             # Get the very last part of it
-            mappedFieldName = fieldMappingElements_3.split("/")[-1]
+            mappedFieldName = fieldMappingElements[3].split("/")[-1]
+            # Mapped (original) owner name | ex: net.minecraft.client.Minecraft (ave)
             # Get the rest of the part except the very last one
-            mappedOwnerName = "/".join(fieldMappingElements_3.split("/")[:-1])
-            # Sets the results to variables to be used later
-            mappedFullPathName = fieldMappingElements_3
+            mappedOwnerFieldName = "/".join(fieldMappingElements[3].split("/")[:-1])
+            # Mapped (original) full path name | ex: net.minecraft.client.Minecraft.thePlayer (ave/h)
+            mappedFieldFullPathName = fieldMappingElements[3]
 
             # Mapped (original) object type ex: Lnet/minecraft/entity/player/EntityPlayer; (Lwn;)
-            fieldMappingElements_4 = fieldMappingElements[4]
-            # Sets the results to variables to be used later
-            mappedObjectType = fieldMappingElements_4
+            mappedFieldObjectType = fieldMappingElements[4]
 
             # print the results
-            print(f"[FD:] Mapping field {obfuscatedOwnerName}/{obfuscatedFieldName} to {mappedFullPathName}, obfObjectType: {obfuscatedObjectType}, objectType: {mappedObjectType}")
+            print(f"[FD:] Mapping field {obfuscatedFieldOwnerName}/{obfuscatedFieldName} to {mappedFieldFullPathName}, obfObjectType: {obfuscatedFieldObjectType}, objectType: {mappedFieldObjectType}")
 
             # Create a dictionary for the field mapping
-            fieldMappingJson = {
+            fieldMappingData = {
                 "obfuscatedFieldName": obfuscatedFieldName,
-                "obfuscatedOwnerName": obfuscatedOwnerName,
-                "obfuscatedFullPathName": obfuscatedFullPathName,
-                "obfuscatedObjectType": obfuscatedObjectType,
+                "obfuscatedFieldOwnerName": obfuscatedFieldOwnerName,
+                "obfuscatedFieldFullPathName": obfuscatedFieldFullPathName,
+                "obfuscatedFieldObjectType": obfuscatedFieldObjectType,
                 "mappedFieldName": mappedFieldName,
-                "mappedOwnerName": mappedOwnerName,
-                "mappedFullPathName": mappedFullPathName,
-                "mappedObjectType": mappedObjectType
+                "mappedOwnerFieldName": mappedOwnerFieldName,
+                "mappedFieldFullPathName": mappedFieldFullPathName,
+                "mappedFieldObjectType": mappedFieldObjectType
             }
 
             # Add the field mapping to the list
-            fieldMappingsJson.append(fieldMappingJson)
+            fieldMappingsJson.append(fieldMappingData)
 
     # Convert the list of field mappings to JSON
     json_data = json.dumps(fieldMappingsJson, indent=4)
@@ -165,57 +151,47 @@ def methodMapping(saveToJson: bool):
             methodMappingCounts += 1
 
             # splits the mapping elements into multiple sentences based on the space
-            fieldMappingElements = mappingLines.split()
+            methodMappingElements = mappingLines.split()
 
-            # Obfuscated field name | ex: h (thePlayer)
-            # Obfuscated owner name | ex: ave (net.minecraft.client.Minecraft)
-            # Obfuscated full path name | ex: ave/h (net.minecraft.client.Minecraft.thePlayer)
-            fieldMappingElements_1 = fieldMappingElements[1]
             # Splits the second sentence by "/"
-            # Sets the results to variables to be used later
-            obfuscatedOwnerName = fieldMappingElements_1.split("/")[0]
-            obfuscatedMethodName = fieldMappingElements_1.split("/")[1]
-            obfuscatedFullPathName = fieldMappingElements_1
+            # Obfuscated method name | ex: h (thePlayer)
+            obfuscatedMethodName = methodMappingElements[1].split("/")[1]
+            # Obfuscated owner name | ex: ave (net.minecraft.client.Minecraft)
+            obfuscatedMethodOwnerName = methodMappingElements[1].split("/")[0]
+            # Obfuscated full path name | ex: ave/h (net.minecraft.client.Minecraft.thePlayer)
+            obfuscatedMethodFullPathName = methodMappingElements[1]
 
             # Obfuscated object type | ex: Lwn; (Lnet/minecraft/entity/player/EntityPlayer;)
-            fieldMappingElements_2 = fieldMappingElements[2]
-            # Sets the results to variables to be used later
-            obfuscatedObjectType = fieldMappingElements_2
+            obfuscatedMethodObjectType = methodMappingElements[2]
 
-            # Mapped (original) field name | ex: thePlayer (h)
-            # Mapped (original) owner name | ex: net.minecraft.client.Minecraft (ave)
-            # Mapped (original) full path name | ex: net.minecraft.client.Minecraft.thePlayer (ave/h)
-            fieldMappingElements_3 = fieldMappingElements[3]
             # Splits the second sentence by "/"
-            # Get the very last part of it
-            mappedMethodName = fieldMappingElements_3.split("/")[-1]
-            # Get the rest of the part except the very last one
-            mappedOwnerName = "/".join(fieldMappingElements_3.split("/")[:-1])
-            # Sets the results to variables to be used later
-            mappedFullPathName = fieldMappingElements_3
+            # Mapped (original) method name | ex: thePlayer (h)
+            mappedMethodName = methodMappingElements[3].split("/")[-1]
+            # Mapped (original) owner name | ex: net.minecraft.client.Minecraft (ave)
+            mappedMethodOwnerName = "/".join(methodMappingElements[3].split("/")[:-1])
+            # Mapped (original) full path name | ex: net.minecraft.client.Minecraft.thePlayer (ave/h)
+            mappedMethodFullPathName = methodMappingElements[3]
 
             # Mapped (original) object type ex: Lnet/minecraft/entity/player/EntityPlayer; (Lwn;)
-            fieldMappingElements_4 = fieldMappingElements[4]
-            # Sets the results to variables to be used later
-            mappedObjectType = fieldMappingElements_4
+            mappedMethodObjectType = methodMappingElements[4]
 
             # print the results
-            print(f"[MD:] Mapping method {obfuscatedOwnerName}/{obfuscatedMethodName} to {mappedFullPathName}, obfObjectType: {obfuscatedObjectType}, objectType: {mappedObjectType}")
+            print(f"[MD:] Mapping method {obfuscatedMethodOwnerName}/{obfuscatedMethodName} to {mappedMethodFullPathName}, obfObjectType: {obfuscatedMethodObjectType}, objectType: {mappedMethodObjectType}")
 
             # Create a dictionary for the field mapping
-            methodMappingJson = {
+            methodMappingData = {
                 "obfuscatedMethodName": obfuscatedMethodName,
-                "obfuscatedOwnerName": obfuscatedOwnerName,
-                "obfuscatedFullPathName": obfuscatedFullPathName,
-                "obfuscatedObjectType": obfuscatedObjectType,
+                "obfuscatedMethodOwnerName": obfuscatedMethodOwnerName,
+                "obfuscatedMethodFullPathName": obfuscatedMethodFullPathName,
+                "obfuscatedMethodObjectType": obfuscatedMethodObjectType,
                 "mappedMethodName": mappedMethodName,
-                "mappedOwnerName": mappedOwnerName,
-                "mappedFullPathName": mappedFullPathName,
-                "mappedObjectType": mappedObjectType
+                "mappedMethodOwnerName": mappedMethodOwnerName,
+                "mappedMethodFullPathName": mappedMethodFullPathName,
+                "mappedMethodObjectType": mappedMethodObjectType
             }
 
             # Add the field mapping to the list
-            methodMappingsJson.append(methodMappingJson)
+            methodMappingsJson.append(methodMappingData)
 
     # Convert the list of field mappings to JSON
     json_data = json.dumps(methodMappingsJson, indent=4)

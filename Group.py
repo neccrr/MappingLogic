@@ -29,17 +29,17 @@ def groupMapping():
         fields = []
 
         for fieldItem in parsedFieldMappingData:
-            if fieldItem["obfuscatedOwnerName"] == obfuscatedClassName:
+            if fieldItem["obfuscatedFieldOwnerName"] == obfuscatedClassName:
                 # Field Mappings
                 obfuscatedFieldName = fieldItem["obfuscatedFieldName"]
-                obfuscatedFieldOwnerName = fieldItem["obfuscatedOwnerName"]
-                obfuscatedFieldFullPathName = fieldItem["obfuscatedFullPathName"]
-                obfuscatedFieldObjectType = fieldItem["obfuscatedObjectType"]
+                obfuscatedFieldOwnerName = fieldItem["obfuscatedFieldOwnerName"]
+                obfuscatedFieldFullPathName = fieldItem["obfuscatedFieldFullPathName"]
+                obfuscatedFieldObjectType = fieldItem["obfuscatedFieldObjectType"]
 
                 mappedFieldName = fieldItem["mappedFieldName"]
-                mappedFieldOwnerName = fieldItem["mappedOwnerName"]
-                mappedFieldFullPathName = fieldItem["mappedFullPathName"]
-                mappedFieldObjectType = fieldItem["mappedObjectType"]
+                mappedFieldOwnerName = fieldItem["mappedFieldOwnerName"]
+                mappedFieldFullPathName = fieldItem["mappedFieldFullPathName"]
+                mappedFieldObjectType = fieldItem["mappedFieldObjectType"]
 
                 # Add the field to the fields list
                 fields.append({
@@ -67,17 +67,17 @@ def groupMapping():
         methods = []
 
         for methodItem in parsedMethodMappingData:
-            if methodItem["obfuscatedOwnerName"] == obfuscatedClassName:
+            if methodItem["obfuscatedMethodOwnerName"] == obfuscatedClassName:
                 # Method Mappings
                 obfuscatedMethodName = methodItem["obfuscatedMethodName"]
-                obfuscatedMethodOwnerName = methodItem["obfuscatedOwnerName"]
-                obfuscatedMethodFullPathName = methodItem["obfuscatedFullPathName"]
-                obfuscatedMethodObjectType = methodItem["obfuscatedObjectType"]
+                obfuscatedMethodOwnerName = methodItem["obfuscatedMethodOwnerName"]
+                obfuscatedMethodFullPathName = methodItem["obfuscatedMethodFullPathName"]
+                obfuscatedMethodObjectType = methodItem["obfuscatedMethodObjectType"]
 
                 mappedMethodName = methodItem["mappedMethodName"]
-                mappedMethodOwnerName = methodItem["mappedOwnerName"]
-                mappedMethodFullPathName = methodItem["mappedFullPathName"]
-                mappedMethodObjectType = methodItem["mappedObjectType"]
+                mappedMethodOwnerName = methodItem["mappedMethodOwnerName"]
+                mappedMethodFullPathName = methodItem["mappedMethodFullPathName"]
+                mappedMethodObjectType = methodItem["mappedMethodObjectType"]
 
                 # Add the method to the methods list
                 methods.append({
