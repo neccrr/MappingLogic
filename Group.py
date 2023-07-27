@@ -1,6 +1,8 @@
 import json
 import time
 
+from SystemUtils import SystemUtils
+
 
 def groupMapping():
     # Class mappings
@@ -141,3 +143,5 @@ if __name__ == '__main__':
 
     print(f"Elapsed time: {elapsedTime} seconds ({elapsedTime * 1000} ms)")
     print(f"{formattedTime}")
+    print("")
+    SystemUtils.printSystemInformation()

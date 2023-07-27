@@ -1,6 +1,8 @@
 import json
 import time
 
+from SystemUtils import SystemUtils
+
 
 def mergeJsonMapping():
     # Define the order of JSON files to merge
@@ -54,3 +56,5 @@ if __name__ == '__main__':
 
     print(f"Elapsed time: {elapsedTime} seconds ({elapsedTime * 1000} ms)")
     print(f"{formattedTime}")
+    print("")
+    SystemUtils.printSystemInformation()

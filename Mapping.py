@@ -1,6 +1,9 @@
 import json
 import time
 
+from SystemUtils import SystemUtils
+
+
 # global variables
 classMappingCounts = 0
 fieldMappingCounts = 0
@@ -95,7 +98,7 @@ def fieldMapping(saveToJson: bool):
             mappedFieldName = fieldMappingElements[3].split("/")[-1]
             # Mapped (original) owner name | ex: net.minecraft.client.Minecraft (ave)
             # Get the rest of the part except the very last one
-            mappedOwnerFieldName = "/".join(fieldMappingElements[3].split("/")[:-1])
+            mappedFieldOwnerName = "/".join(fieldMappingElements[3].split("/")[:-1])
             # Mapped (original) full path name | ex: net.minecraft.client.Minecraft.thePlayer (ave/h)
             mappedFieldFullPathName = fieldMappingElements[3]
 
@@ -103,7 +106,8 @@ def fieldMapping(saveToJson: bool):
             mappedFieldObjectType = fieldMappingElements[4]
 
             # print the results
-            print(f"[FD:] Mapping field {obfuscatedFieldOwnerName}/{obfuscatedFieldName} to {mappedFieldFullPathName}, obfObjectType: {obfuscatedFieldObjectType}, objectType: {mappedFieldObjectType}")
+            print(
+                f"[FD:] Mapping field {obfuscatedFieldOwnerName}/{obfuscatedFieldName} to {mappedFieldFullPathName}, obfObjectType: {obfuscatedFieldObjectType}, objectType: {mappedFieldObjectType}")
 
             # Create a dictionary for the field mapping
             fieldMappingData = {
@@ -112,7 +116,7 @@ def fieldMapping(saveToJson: bool):
                 "obfuscatedFieldFullPathName": obfuscatedFieldFullPathName,
                 "obfuscatedFieldObjectType": obfuscatedFieldObjectType,
                 "mappedFieldName": mappedFieldName,
-                "mappedOwnerFieldName": mappedOwnerFieldName,
+                "mappedFieldOwnerName": mappedFieldOwnerName,
                 "mappedFieldFullPathName": mappedFieldFullPathName,
                 "mappedFieldObjectType": mappedFieldObjectType
             }
@@ -176,7 +180,8 @@ def methodMapping(saveToJson: bool):
             mappedMethodObjectType = methodMappingElements[4]
 
             # print the results
-            print(f"[MD:] Mapping method {obfuscatedMethodOwnerName}/{obfuscatedMethodName} to {mappedMethodFullPathName}, obfObjectType: {obfuscatedMethodObjectType}, objectType: {mappedMethodObjectType}")
+            print(
+                f"[MD:] Mapping method {obfuscatedMethodOwnerName}/{obfuscatedMethodName} to {mappedMethodFullPathName}, obfObjectType: {obfuscatedMethodObjectType}, objectType: {mappedMethodObjectType}")
 
             # Create a dictionary for the field mapping
             methodMappingData = {
@@ -241,3 +246,6 @@ if __name__ == '__main__':
 
     print(f"Elapsed time: {elapsedTime} seconds ({elapsedTime * 1000} ms)")
     print(f"{formattedTime}")
+    print("")
+    SystemUtils.printSystemInformation()
+
